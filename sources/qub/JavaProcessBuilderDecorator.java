@@ -121,20 +121,6 @@ public class JavaProcessBuilderDecorator<T extends JavaProcessBuilder> extends J
 
     @Override
     @SuppressWarnings("unchecked")
-    public T redirectOutputTo(StringBuilder builder)
-    {
-        this.javaProcessBuilder.redirectOutputTo(builder);
-        return (T)this;
-    }
-
-    @Override
-    public StringBuilder redirectOutput()
-    {
-        return this.javaProcessBuilder.redirectOutput();
-    }
-
-    @Override
-    @SuppressWarnings("unchecked")
     public T redirectError(Action1<ByteReadStream> redirectErrorAction)
     {
         this.javaProcessBuilder.redirectError(redirectErrorAction);
@@ -154,14 +140,6 @@ public class JavaProcessBuilderDecorator<T extends JavaProcessBuilder> extends J
     public T redirectErrorLines(Action1<String> onErrorLine)
     {
         this.javaProcessBuilder.redirectErrorLines(onErrorLine);
-        return (T)this;
-    }
-
-    @Override
-    @SuppressWarnings("unchecked")
-    public T redirectErrorTo(StringBuilder builder)
-    {
-        this.javaProcessBuilder.redirectErrorTo(builder);
         return (T)this;
     }
 }

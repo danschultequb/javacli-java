@@ -20,7 +20,7 @@ public interface JavaProcessBuilderTests
                     test.assertNotNull(java);
                     test.assertEqual("java", java.getExecutablePath().toString());
                     test.assertEqual(Iterable.create(), java.getArguments());
-                    test.assertEqual(test.getProcess().getCurrentFolderPath(), java.getWorkingFolderPath());
+                    test.assertEqual(test.getProcess().getCurrentFolder().await().getPath(), java.getWorkingFolderPath());
                 });
             });
 
@@ -38,7 +38,7 @@ public interface JavaProcessBuilderTests
                     test.assertNotNull(java);
                     test.assertEqual("java", java.getExecutablePath().toString());
                     test.assertEqual(Iterable.create(), java.getArguments());
-                    test.assertEqual(test.getProcess().getCurrentFolderPath(), java.getWorkingFolderPath());
+                    test.assertEqual(test.getProcess().getCurrentFolder().await().getPath(), java.getWorkingFolderPath());
                 });
             });
 

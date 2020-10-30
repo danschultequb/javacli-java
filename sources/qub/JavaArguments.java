@@ -11,6 +11,12 @@ public interface JavaArguments<T>
     T addArguments(String... arguments);
 
     /**
+     * Get the arguments that have been added to this object.
+     * @return The arguments that have been added to this object.
+     */
+    Iterable<String> getArguments();
+
+    /**
      * Add a classpath argument to the java process.
      * @param classpath The classpath argument to add to the java process.
      * @return This object for method chaining.
@@ -44,5 +50,14 @@ public interface JavaArguments<T>
         PreCondition.assertNotNullAndNotEmpty(javaAgent, "javaAgent");
 
         return this.addArguments("-javaagent:" + javaAgent);
+    }
+
+    /**
+     * Add a version argument to the java process.
+     * @return This object for method chaining.
+     */
+    default T addVersion()
+    {
+        return this.addArguments("--version");
     }
 }

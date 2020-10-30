@@ -11,23 +11,23 @@ public class JavaProcessBuilder extends ProcessBuilderDecorator<JavaProcessBuild
     }
 
     /**
-     * Get a JavaProcessBuilder from the provided Process.
+     * Create a JavaProcessBuilder from the provided Process.
      * @param process The Process to get the JavaProcessBuilder from.
      * @return The JavaProcessBuilder.
      */
-    public static Result<? extends JavaProcessBuilder> get(Process process)
+    public static Result<? extends JavaProcessBuilder> create(Process process)
     {
         PreCondition.assertNotNull(process, "process");
 
-        return JavaProcessBuilder.get(process.getProcessFactory());
+        return JavaProcessBuilder.create(process.getProcessFactory());
     }
 
     /**
-     * Get a JavaProcessBuilder from the provided ProcessFactory.
+     * Create a JavaProcessBuilder from the provided ProcessFactory.
      * @param processFactory The ProcessFactory to get the JavaProcessBuilder from.
      * @return The JavaProcessBuilder.
      */
-    public static Result<? extends JavaProcessBuilder> get(ProcessFactory processFactory)
+    public static Result<? extends JavaProcessBuilder> create(ProcessFactory processFactory)
     {
         PreCondition.assertNotNull(processFactory, "processFactory");
 

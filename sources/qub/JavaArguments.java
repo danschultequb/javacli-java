@@ -58,6 +58,43 @@ public interface JavaArguments<T>
      */
     default T addVersion()
     {
-        return this.addArguments("--version");
+        return this.addVersion(VersionDestination.StandardOutput);
+    }
+
+    /**
+     * Add a version argument to the java process.
+     * @param versionDestination The destination stream that the version number will be printed to.
+     * @return This object for method chaining.
+     */
+    default T addVersion(VersionDestination versionDestination)
+    {
+        PreCondition.assertNotNull(versionDestination, "versionDestination");
+
+        return this.addArguments(versionDestination == VersionDestination.StandardOutput
+            ? "--version"
+            : "-version");
+    }
+
+    /**
+     * Add a show-version argument to the java process.
+     * @return This object for method chaining.
+     */
+    default T addShowVersion()
+    {
+        return this.addShowVersion(VersionDestination.StandardOutput);
+    }
+
+    /**
+     * Add a show-version argument to the java process.
+     * @param versionDestination The destination stream that the version number will be printed to.
+     * @return This object for method chaining.
+     */
+    default T addShowVersion(VersionDestination versionDestination)
+    {
+        PreCondition.assertNotNull(versionDestination, "versionDestination");
+
+        return this.addArguments(versionDestination == VersionDestination.StandardOutput
+            ? "--show-version"
+            : "-showversion");
     }
 }

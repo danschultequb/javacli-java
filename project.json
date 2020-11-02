@@ -1,7 +1,7 @@
 {
   "publisher": "qub",
   "project": "javacli-java",
-  "version": "35",
+  "version": "36",
   "java": {
     "dependencies": [
       {

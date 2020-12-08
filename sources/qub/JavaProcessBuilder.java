@@ -12,10 +12,10 @@ public class JavaProcessBuilder extends ProcessBuilderDecorator<JavaProcessBuild
 
     /**
      * Create a JavaProcessBuilder from the provided Process.
-     * @param process The Process to get the JavaProcessBuilder from.
+     * @param process The DesktopProcess to get the JavaProcessBuilder from.
      * @return The JavaProcessBuilder.
      */
-    public static Result<? extends JavaProcessBuilder> create(Process process)
+    public static Result<? extends JavaProcessBuilder> create(DesktopProcess process)
     {
         PreCondition.assertNotNull(process, "process");
 

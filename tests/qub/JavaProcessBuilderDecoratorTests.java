@@ -69,12 +69,30 @@ public interface JavaProcessBuilderDecoratorTests
                     test.assertEqual(Iterable.create("--hello", "--there"), java.getArguments());
                 });
             });
+
+            runner.testGroup("setVerbose(CharacterWriteStream)", () ->
+            {
+                runner.test("with null", (Test test) ->
+                {
+                    final JavaProcessBuilderDecorator<JavaProcessBuilder> java = JavaProcessBuilderDecoratorTests.create(test);
+                    final JavaProcessBuilder setVerboseResult = java.setVerbose(null);
+                    test.assertSame(java, setVerboseResult);
+                });
+
+                runner.test("with non-null", (Test test) ->
+                {
+                    final InMemoryCharacterStream verbose = InMemoryCharacterStream.create();
+                    final JavaProcessBuilderDecorator<JavaProcessBuilder> java = JavaProcessBuilderDecoratorTests.create(test);
+                    final JavaProcessBuilder setVerboseResult = java.setVerbose(verbose);
+                    test.assertSame(java, setVerboseResult);
+                });
+            });
         });
     }
 
     static JavaProcessBuilderDecorator<JavaProcessBuilder> create(Test test)
     {
-        final JavaProcessBuilder java = JavaProcessBuilder.create(test.getProcess()).await();
+        final JavaProcessBuilder java = JavaProcessBuilder.create(FakeDesktopProcess.create()).await();
         return new JavaProcessBuilderDecorator<>(java);
     }
 }

@@ -8,24 +8,24 @@ public interface JavaProcessBuilderTests
         {
             JavaArgumentsTests.test(runner, (Test test) ->
             {
-                return JavaProcessBuilder.create(test.getProcess()).await();
+                return JavaProcessBuilder.create(FakeDesktopProcess.create()).await();
             });
 
-            runner.testGroup("create(Process)", () ->
+            runner.testGroup("create(RealDesktopProcess)", () ->
             {
                 runner.test("with null", (Test test) ->
                 {
-                    test.assertThrows(() -> JavaProcessBuilder.create((Process)null),
+                    test.assertThrows(() -> JavaProcessBuilder.create((DesktopProcess)null),
                         new PreConditionFailure("process cannot be null."));
                 });
 
                 runner.test("with non-null", (Test test) ->
                 {
-                    final JavaProcessBuilder java = JavaProcessBuilder.create(test.getProcess()).await();
+                    final JavaProcessBuilder java = JavaProcessBuilder.create(FakeDesktopProcess.create()).await();
                     test.assertNotNull(java);
                     test.assertEqual("java", java.getExecutablePath().toString());
                     test.assertEqual(Iterable.create(), java.getArguments());
-                    test.assertEqual(test.getProcess().getCurrentFolderPath(), java.getWorkingFolderPath());
+                    test.assertEqual(Path.parse("/"), java.getWorkingFolderPath());
                 });
             });
 
@@ -39,11 +39,11 @@ public interface JavaProcessBuilderTests
 
                 runner.test("with non-null", (Test test) ->
                 {
-                    final JavaProcessBuilder java = JavaProcessBuilder.create(test.getProcess().getProcessFactory()).await();
+                    final JavaProcessBuilder java = JavaProcessBuilder.create((FakeDesktopProcess.create()).getProcessFactory()).await();
                     test.assertNotNull(java);
                     test.assertEqual("java", java.getExecutablePath().toString());
                     test.assertEqual(Iterable.create(), java.getArguments());
-                    test.assertEqual(test.getProcess().getCurrentFolderPath(), java.getWorkingFolderPath());
+                    test.assertEqual(Path.parse("/"), java.getWorkingFolderPath());
                 });
             });
         });

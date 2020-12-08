@@ -142,4 +142,12 @@ public class JavaProcessBuilderDecorator<T extends JavaProcessBuilder> extends J
         this.javaProcessBuilder.redirectErrorLines(onErrorLine);
         return (T)this;
     }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public T setVerbose(CharacterWriteStream verbose)
+    {
+        this.javaProcessBuilder.setVerbose(verbose);
+        return (T)this;
+    }
 }
